@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Building : MonoBehaviour
 {
     public  bool Placed { get; private set; }
     public BoundsInt area;
+    public int PopulationCapIncrease;
+    private populationController populationController;
+    
+
     
     #region Build Methods
 
@@ -31,7 +36,10 @@ public class Building : MonoBehaviour
         areaTemp.position = positionInt;
         Placed = true;
         GridBuildingSystem.current.TakeArea(areaTemp);
+        populationController.ChangeMaxPopulation(PopulationCapIncrease);
     }
-    
+
+
+
     #endregion
 }

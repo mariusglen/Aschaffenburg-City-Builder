@@ -74,9 +74,6 @@ public class GridBuildingSystem : MonoBehaviour
             Destroy(temp.gameObject);
         }
     }
-
-    #endregion
-
     #region Tilemap management
     
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
@@ -111,6 +108,9 @@ public class GridBuildingSystem : MonoBehaviour
     }
     
     #endregion
+
+    #endregion
+
 
     #region Building Placement
 

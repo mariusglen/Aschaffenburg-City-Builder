@@ -16,9 +16,12 @@ public class cameraContoller : MonoBehaviour
     public float scrollSpeed = 75 ;
     [SerializeField]
     private Camera cameraFreeWalk;
-    public float zoomSpeed = 1;
-    public float minZoomFOV = 5;
-    public float maxZoomFOV = 10;
+    [SerializeField]
+    private float zoomSpeed = 1;
+    [SerializeField]
+    private float minZoomFOV = 5;
+    [SerializeField]
+    private float maxZoomFOV = 10;
 
     private void Awake()
     {
@@ -28,7 +31,7 @@ public class cameraContoller : MonoBehaviour
 
     public void ZoomIn()
     {
-        cameraFreeWalk.orthographicSize -= zoomSpeed;
+        cameraFreeWalk.orthographicSize = cameraFreeWalk.orthographicSize - zoomSpeed;
         if (cameraFreeWalk.orthographicSize < minZoomFOV)
         {
             cameraFreeWalk.orthographicSize = minZoomFOV;
@@ -37,7 +40,7 @@ public class cameraContoller : MonoBehaviour
 
     public void ZoomOut()
     {
-        cameraFreeWalk.orthographicSize = zoomSpeed;
+        cameraFreeWalk.orthographicSize = cameraFreeWalk.orthographicSize + zoomSpeed;
         if (cameraFreeWalk.orthographicSize > maxZoomFOV)
         {
             cameraFreeWalk.orthographicSize = maxZoomFOV;
