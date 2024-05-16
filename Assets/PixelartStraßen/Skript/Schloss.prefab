@@ -132,3 +132,20 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 6, y: 6, z: 1}
+  PopulationCapIncrease: 0
+  price_wood: 0
+  price_stone: 0
+  price_iron: 0
+  price_money: 0
+  price_worker: 0
+  upkeep_wood: 0
+  upkeep_stone: 0
+  upkeep_iron: 0
+  upkeep_money: 0
+  production_wood: 0
+  production_stone: 0
+  production_iron: 0
+  production_money: 0
+  production_culture: 0
+  populationController: {fileID: 0}
+  resourceController: {fileID: 2339638756832099801, guid: e49c5890b5adcac47846644d2d095df0, type: 3}

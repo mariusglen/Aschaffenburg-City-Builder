@@ -7,7 +7,7 @@ public class resourceController : MonoBehaviour
     public int storage_wood, storage_stone, storage_iron, storage_money, storage_culture; //Tracks global storage
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money, upkeep_culture;  //Tracks global Upkeep
     public int production_wood, production_stone, production_iron, production_money, production_culture; //Tracks global Production
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,9 @@ public class resourceController : MonoBehaviour
             Debug.Log("Resource_Update");
             // do Resource calculation here
             ResourceCalculation();
+            Check_storage();
+            Check_production();
+            Check_upkeep();
             yield return new WaitForSeconds(10);
         }
     }
@@ -34,10 +37,10 @@ public class resourceController : MonoBehaviour
     void ResourceCalculation()
     {
         //calculates the increase / decrease of Resources in regular intervals
-        change_money((production_money - upkeep_money));
-        change_iron((production_iron - upkeep_iron));
-        change_wood((production_wood - upkeep_wood));
-        change_stone((production_stone - upkeep_stone));
+        change_money(production_money - upkeep_money);
+        change_iron(production_iron - upkeep_iron);
+        change_wood(production_wood - upkeep_wood);
+        change_stone(production_stone - upkeep_stone);
         change_culture(production_culture - upkeep_culture);
     }
 
@@ -116,4 +119,76 @@ public class resourceController : MonoBehaviour
         production_culture += resourcechange;
     }
 
+    public int get_wood()
+    {
+        return storage_wood;
+    }
+
+    public int get_stone()
+    {
+        return storage_stone;
+    }
+
+    public int get_iron()
+    {
+        return storage_iron;
+    }
+
+    public int get_money()
+    {
+        return storage_money; 
+    }
+
+    public int get_culture()
+    {
+        return storage_culture;
+    }
+
+    public void Check_storage()
+    {
+        Debug.Log(
+            "Storage: "
+            + " Holz: "
+            + storage_wood
+            + " Stein: "
+            + storage_stone
+            + " Eisen: "
+            + storage_iron
+            + " Geld: "
+            + storage_money
+            + " Kultur: "
+            + storage_culture);
+    }
+
+    public void Check_production()
+    {
+        Debug.Log(
+            " Production: "
+            + " Holz: " 
+            + production_wood
+            + " Stein: "
+            + production_stone
+            + " Eisen: "
+            + production_iron
+            + " Geld: "
+            + production_money
+            + " Kultur: "
+            + production_culture);
+    }
+
+    public void Check_upkeep()
+    {
+        Debug.Log(
+            " Upkeep: "
+            + " Holz: "
+            + upkeep_wood
+            + " Stein: "
+            + upkeep_stone
+            + " Eisen: "
+            + upkeep_iron
+            + " Geld: "
+            + upkeep_money
+            + " Kultur: "
+            + upkeep_culture);
+    }
 }

@@ -12,10 +12,18 @@ public class Building : MonoBehaviour
     public int price_wood, price_stone, price_iron, price_money, price_worker;
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
     public int production_wood, production_stone, production_iron, production_money, production_culture;
-    private populationController populationController;
-    private resourceController resourceController;
-    
+
+    private GameObject populationController;
+    private GameObject resourceController;
+
+
     #region Build Methods
+    private void Awake()
+    {
+        populationController =  GameObject.Find("populationController");
+        resourceController =    GameObject.Find("resourceController");
+    }
+
 
     public bool CanBePlaced()
     {
@@ -33,13 +41,15 @@ public class Building : MonoBehaviour
 
     public void Place()
     {
+        populationController populationcontroller = (populationController) populationController.GetComponent("populationController");
+
         Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
         Placed = true;
         GridBuildingSystem.current.TakeArea(areaTemp);
-        populationController.ChangeMaxPopulation(PopulationCapIncrease);
-        populationController.ChangeWorkingPopulation(price_worker);
+        populationcontroller.ChangeMaxPopulation(PopulationCapIncrease);
+        populationcontroller.ChangeWorkingPopulation(price_worker);
 
         //adjusts storage for the cost of the building
         adjuststorage();
@@ -52,27 +62,30 @@ public class Building : MonoBehaviour
 
     void adjuststorage()
     {
-        resourceController.change_wood(price_wood);
-        resourceController.change_stone(price_stone);
-        resourceController.change_iron(price_iron);
-        resourceController.change_money(price_money);
+        resourceController resourcecontroller = (resourceController) resourceController.GetComponent("resourceController");
+        resourcecontroller.change_wood(price_wood);
+        resourcecontroller.change_stone(price_stone);
+        resourcecontroller.change_iron(price_iron);
+        resourcecontroller.change_money(price_money);
     }
 
     void adjustproduction()
     {
-        resourceController.change_production_culture(production_culture);
-        resourceController.change_production_iron(production_iron);
-        resourceController.change_production_money(production_money);
-        resourceController.change_production_stone(production_stone);
-        resourceController.change_production_wood(production_wood);
+        resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
+        resourcecontroller.change_production_culture(production_culture);
+        resourcecontroller.change_production_iron(production_iron);
+        resourcecontroller.change_production_money(production_money);
+        resourcecontroller.change_production_stone(production_stone);
+        resourcecontroller.change_production_wood(production_wood);
     }
 
     void adjustupkeep()
     {
-        resourceController.change_upkeep_iron(upkeep_iron);
-        resourceController.change_upkeep_money(upkeep_money);
-        resourceController.change_upkeep_stone(upkeep_stone);
-        resourceController.change_upkeep_wood(upkeep_wood);
+        resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
+        resourcecontroller.change_upkeep_iron(upkeep_iron);
+        resourcecontroller.change_upkeep_money(upkeep_money);
+        resourcecontroller.change_upkeep_stone(upkeep_stone);
+        resourcecontroller.change_upkeep_wood(upkeep_wood);
     }
 
     #endregion

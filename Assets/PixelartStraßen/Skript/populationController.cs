@@ -9,7 +9,7 @@ public class populationController : MonoBehaviour
     public int MinPopulation;
     public int PopulationGrowth;
     public int WorkingPopulation;
-    private resourceController resourceController;
+    public resourceController resourceController;
  
 
 
@@ -43,7 +43,7 @@ public class populationController : MonoBehaviour
 
     void PopCalc()
     {
-        PopulationGrowth = (int) (400/((MaxPopulation - PopulationCount) * 1/2) + 50);
+        PopulationGrowth = (int) (400/((MaxPopulation - PopulationCount) * 1/2 +1) + 50);
         PopulationCount += PopulationGrowth;
         WorkingPopulation += PopulationGrowth;
     }
