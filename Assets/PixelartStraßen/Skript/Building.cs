@@ -59,6 +59,13 @@ public class Building : MonoBehaviour
         adjustupkeep();
 
     }
+    private void OnMouseOver()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            GameObject.Destroy(gameObject);
+        }
+    }
 
     void adjuststorage()
     {
