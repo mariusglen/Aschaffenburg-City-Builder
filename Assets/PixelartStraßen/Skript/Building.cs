@@ -12,6 +12,7 @@ public class Building : MonoBehaviour
     public int price_wood, price_stone, price_iron, price_money, price_worker;
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
     public int production_wood, production_stone, production_iron, production_money, production_culture;
+   
 
     private GameObject populationController;
     private GameObject resourceController;
@@ -51,12 +52,13 @@ public class Building : MonoBehaviour
         populationcontroller.ChangeMaxPopulation(PopulationCapIncrease);
         populationcontroller.ChangeWorkingPopulation(price_worker);
 
+        //New modifier to allow negative adjustments: please only use 1/-1
         //adjusts storage for the cost of the building
-        adjuststorage();
+        adjuststorage(1);
         //adjusts the global production of goods
-        adjustproduction();
+        adjustproduction(1);
         //adjusts the global upkeep of goods
-        adjustupkeep();
+        adjustupkeep(1);
 
     }
     private void OnMouseOver()
@@ -64,35 +66,38 @@ public class Building : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             GameObject.Destroy(gameObject);
+            adjuststorage(-1);
+            adjustproduction(-1);
+            adjustupkeep(-1);
         }
     }
 
-    void adjuststorage()
+    void adjuststorage(int modifier)
     {
         resourceController resourcecontroller = (resourceController) resourceController.GetComponent("resourceController");
-        resourcecontroller.change_wood(price_wood);
-        resourcecontroller.change_stone(price_stone);
-        resourcecontroller.change_iron(price_iron);
-        resourcecontroller.change_money(price_money);
+        resourcecontroller.change_wood(price_wood*modifier);
+        resourcecontroller.change_stone(price_stone*modifier);
+        resourcecontroller.change_iron(price_iron*modifier);
+        resourcecontroller.change_money(price_money*modifier);
     }
 
-    void adjustproduction()
+    void adjustproduction(int modifier)
     {
         resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
-        resourcecontroller.change_production_culture(production_culture);
-        resourcecontroller.change_production_iron(production_iron);
-        resourcecontroller.change_production_money(production_money);
-        resourcecontroller.change_production_stone(production_stone);
-        resourcecontroller.change_production_wood(production_wood);
+        resourcecontroller.change_production_culture(production_culture*modifier);
+        resourcecontroller.change_production_iron(production_iron*modifier);
+        resourcecontroller.change_production_money(production_money*modifier);
+        resourcecontroller.change_production_stone(production_stone*modifier);
+        resourcecontroller.change_production_wood(production_wood*modifier);
     }
 
-    void adjustupkeep()
+    void adjustupkeep(int modifier)
     {
         resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
-        resourcecontroller.change_upkeep_iron(upkeep_iron);
-        resourcecontroller.change_upkeep_money(upkeep_money);
-        resourcecontroller.change_upkeep_stone(upkeep_stone);
-        resourcecontroller.change_upkeep_wood(upkeep_wood);
+        resourcecontroller.change_upkeep_iron(upkeep_iron*modifier);
+        resourcecontroller.change_upkeep_money(upkeep_money*modifier);
+        resourcecontroller.change_upkeep_stone(upkeep_stone*modifier);
+        resourcecontroller.change_upkeep_wood(upkeep_wood*modifier);
     }
 
     #endregion
