@@ -31,6 +31,7 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "white"));
         tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "green"));
         tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "red"));
+        tileBases.Add(TileType.Orange, Resources.Load<TileBase>(tilePath + "orange"));
     }
 
     private void Update()
@@ -79,6 +80,21 @@ public class GridBuildingSystem : MonoBehaviour
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
     {
         TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
+        int counter = 0;
+        
+        foreach (var v in area.allPositionsWithin)
+        {
+            Vector3Int pos = new Vector3Int(v.x, v.y, 0);
+            array[counter] = tilemap.GetTile(pos);
+            counter++;
+        }
+        
+        return array;
+    }
+
+    private static TileBase[] GetMoreTilesBlock(BoundsInt area, Tilemap tilemap)
+    {
+        TileBase[] array = new TileBase[(area.size.x+1) * (area.size.y+1) * area.size.z];
         int counter = 0;
         
         foreach (var v in area.allPositionsWithin)
@@ -172,6 +188,22 @@ public class GridBuildingSystem : MonoBehaviour
         return true;
     }
 
+    public bool StreetDetector(BoundsInt area)
+    {
+        TileBase[] baseArray = GetMoreTilesBlock(area, MainTilemap);
+        foreach (var b in baseArray)
+        {
+            if (b == tileBases[TileType.Orange])
+            {
+                Debug.Log("Street detected");
+                return true;
+            }
+        }
+        Debug.Log("Nos Street Detected");
+
+        return false;
+    }
+
     public void TakeArea(BoundsInt area)
     {
         SetTilesBlock(area, TileType.Empty, TempTilemap);
@@ -186,5 +218,8 @@ public enum TileType
     Empty, 
     White,
     Green, 
-    Red
+    Red,
+    Orange,
+
+
 }

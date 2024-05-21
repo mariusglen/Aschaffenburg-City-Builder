@@ -32,7 +32,7 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        if (GridBuildingSystem.current.CanTakeArea(areaTemp))
+        if (GridBuildingSystem.current.CanTakeArea(areaTemp) && GridBuildingSystem.current.StreetDetector(areaTemp))
         {
             return true;
         }
