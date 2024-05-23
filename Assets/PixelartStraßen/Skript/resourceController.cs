@@ -9,6 +9,33 @@ public class resourceController : MonoBehaviour
     public int production_wood, production_stone, production_iron, production_money, production_culture; //Tracks global Production
 
 
+    //Saving System
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame(this);
+    }
+
+    public void LoadGame()
+    {
+        GameData data = SaveSystem.LoadGame();
+
+        storage_wood = data.storage_wood;
+        storage_stone = data.storage_stone;
+        storage_iron = data.storage_iron;
+        storage_money = data.storage_money;
+        storage_culture = data.storage_culture;
+        upkeep_wood = data.upkeep_wood;
+        upkeep_stone = data.upkeep_stone;
+        upkeep_iron = data.upkeep_iron;
+        upkeep_money = data.upkeep_money;
+        upkeep_culture = data.upkeep_culture;
+        production_wood = data.production_wood;
+        production_stone = data.production_stone;
+        production_iron = data.production_iron;
+        production_money = data.production_money;
+        production_culture = data.production_culture;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
