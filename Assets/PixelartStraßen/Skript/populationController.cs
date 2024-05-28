@@ -8,7 +8,7 @@ public class populationController : MonoBehaviour
     public int MaxPopulation;
     public int MinPopulation;
     public int PopulationGrowth;
-    []
+    
 
 
     void Start()
