@@ -12,7 +12,7 @@ public class Building : MonoBehaviour
     public int price_wood, price_stone, price_iron, price_money, price_worker;
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
     public int production_wood, production_stone, production_iron, production_money, production_culture;
-   
+    public int cap_wood, cap_stone, cap_iron, cap_money, cap_culture;
 
     private GameObject populationController;
     private GameObject resourceController;
@@ -100,5 +100,14 @@ public class Building : MonoBehaviour
         resourcecontroller.change_upkeep_wood(upkeep_wood*modifier);
     }
 
+    void adjustcapacity(int modifier)
+    {
+        resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
+        resourcecontroller.change_iron_cap(cap_iron * modifier);
+        resourcecontroller.change_money_cap(cap_money * modifier);
+        resourcecontroller.change_stone_cap(cap_stone * modifier);
+        resourcecontroller.change_wood_cap(cap_wood * modifier);
+        resourcecontroller.change_culture_cap(cap_culture * modifier);
+    }
     #endregion
 }

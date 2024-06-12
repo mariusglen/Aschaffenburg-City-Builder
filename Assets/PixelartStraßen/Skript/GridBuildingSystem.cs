@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GridBuildingSystem : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class GridBuildingSystem : MonoBehaviour
     public GridLayout gridLayout;
     public Tilemap MainTilemap;
     public Tilemap TempTilemap;
+    public GameObject Schloss_BB;
+
 
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     private Building temp;
     private Vector3 prevPos;
     private BoundsInt prevArea;
+
     
     #region Unity Methods
 
@@ -67,12 +71,14 @@ public class GridBuildingSystem : MonoBehaviour
             if (temp.CanBePlaced())
             {
                 temp.Place();
+                Schloss_BB.SetActive(true);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             ClearArea();
             Destroy(temp.gameObject);
+            Schloss_BB.SetActive(true);
         }
     }
     #region Tilemap management

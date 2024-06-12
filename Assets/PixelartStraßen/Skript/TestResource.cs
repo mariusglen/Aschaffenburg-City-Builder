@@ -26,6 +26,7 @@ public class TestResource : MonoBehaviour
         resourcecontroller.change_stone(price_stone);
         resourcecontroller.change_iron(price_iron);
         resourcecontroller.change_money(price_money);
+        resourcecontroller.change_wood_cap(100);
     }
 
     void adjustproduction()

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class resourceController : MonoBehaviour
 {
     public int storage_wood, storage_stone, storage_iron, storage_money, storage_culture; //Tracks global storage
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money, upkeep_culture;  //Tracks global Upkeep
     public int production_wood, production_stone, production_iron, production_money, production_culture; //Tracks global Production
-
+    public int capacity_wood, capacity_stone, capacity_iron, capacity_money, capacity_culture; //Resource Capacity
+    public TextMeshProUGUI wood, stone, iron, money, culture;
 
     //Saving System
     public void SaveGame()
@@ -39,11 +42,7 @@ public class resourceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        storage_culture = 0;
-        storage_iron = 0;
-        storage_wood = 0;
-        storage_stone = 0;
-        storage_money = 0;
+        Check_UI();
         StartCoroutine(UpdateResources());
     }
 
@@ -57,6 +56,9 @@ public class resourceController : MonoBehaviour
             Check_storage();
             Check_production();
             Check_upkeep();
+            Check_Capacity_Overflow();
+            Check_UI();
+
             yield return new WaitForSeconds(10);
         }
     }
@@ -71,6 +73,27 @@ public class resourceController : MonoBehaviour
         change_culture(production_culture - upkeep_culture);
     }
 
+    public void change_wood_cap(int capincrease)
+    {
+        capacity_wood += capincrease;
+    }
+
+    public void change_stone_cap(int capincrease)
+    {
+        capacity_stone += capincrease;
+    }
+    public void change_iron_cap(int capincrease)
+    {
+        capacity_iron += capincrease;
+    }
+    public void change_money_cap(int capincrease)
+    {
+        capacity_money += capincrease;
+    }
+    public void change_culture_cap(int capincrease)
+    {
+        capacity_culture += capincrease;
+    }
     public void change_wood(int resourcechange)
     {
         storage_wood += resourcechange;
@@ -218,4 +241,38 @@ public class resourceController : MonoBehaviour
             + " Kultur: "
             + upkeep_culture);
     }
+
+    public void Check_Capacity_Overflow()
+    {
+        if(storage_wood > capacity_wood)
+        {
+            storage_wood = capacity_wood;
+        }
+        if (storage_stone > capacity_stone)
+        {
+            storage_stone = capacity_stone;
+        }
+        if (storage_iron > capacity_iron)
+        {
+            storage_iron = capacity_iron;
+        }
+        if (storage_money > capacity_money)
+        {
+            storage_money = capacity_money;
+        }
+        if (storage_culture > capacity_culture)
+        {
+            storage_culture = capacity_culture;
+        }
+    }
+
+    public void Check_UI()
+    {
+        wood.SetText(storage_wood.ToString() + " / " + capacity_wood.ToString());
+        stone.SetText(storage_stone.ToString() + " / " + capacity_stone.ToString());
+        iron.SetText(storage_iron.ToString() + " / " + capacity_iron.ToString());
+        money.SetText(storage_money.ToString() + " €" + " / " + capacity_money.ToString() + " €");
+        culture.SetText(storage_culture.ToString() + " / " + capacity_culture.ToString());
+    }
+
 }
