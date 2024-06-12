@@ -32,9 +32,9 @@ public class GridBuildingSystem : MonoBehaviour
     {
         string tilePath = @"Tiles\";
         tileBases.Add(TileType.Empty, null);
-        tileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "white"));
-        tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "green"));
-        tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "red"));
+        tileBases.Add(TileType.White, Resources.Load<TileBase>(tilePath + "White"));
+        tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "Green"));
+        tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "Red"));
         tileBases.Add(TileType.Orange, Resources.Load<TileBase>(tilePath + "orange"));
     }
 
