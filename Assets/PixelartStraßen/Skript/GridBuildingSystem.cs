@@ -36,6 +36,7 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "Green"));
         tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "Red"));
         tileBases.Add(TileType.Orange, Resources.Load<TileBase>(tilePath + "orange"));
+        Debug.Log(tileBases);
     }
 
     private void Update()
@@ -74,7 +75,7 @@ public class GridBuildingSystem : MonoBehaviour
                 Schloss_BB.SetActive(true);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             ClearArea();
             Destroy(temp.gameObject);
@@ -157,14 +158,14 @@ public class GridBuildingSystem : MonoBehaviour
         temp.area.position = gridLayout.WorldToCell(temp.gameObject.transform.position);
         BoundsInt buildingArea = temp.area;
 
-        TileBase[] baseArray = GetTilesBlock(buildingArea, MainTilemap);
+        TileBase[] baseArray = GetTilesBlock(buildingArea, TempTilemap);
 
         int size = baseArray.Length;
         TileBase[] tileArray = new TileBase[size];
 
         for (int i = 0; i < baseArray.Length; i++)
         {
-            if (baseArray[i] == tileBases[TileType.White])
+            if (baseArray[i] == tileBases[TileType.Empty])
             {
                 tileArray[i] = tileBases[TileType.Green];
             }
@@ -181,10 +182,11 @@ public class GridBuildingSystem : MonoBehaviour
 
     public bool CanTakeArea(BoundsInt area)
     {
-        TileBase[] baseArray = GetTilesBlock(area, MainTilemap);
+        TileBase[] baseArray = GetTilesBlock(area, TempTilemap);
+        Debug.Log(baseArray);
         foreach (var b in baseArray)
         {
-            if (b != tileBases[TileType.White])
+            if (b != tileBases[TileType.Empty])
             {
                 Debug.Log("Cannot place here");
                 return false;
@@ -212,8 +214,8 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void TakeArea(BoundsInt area)
     {
-        SetTilesBlock(area, TileType.Empty, TempTilemap);
-        SetTilesBlock(area, TileType.Green, MainTilemap);
+        //SetTilesBlock(area, TileType.Empty, TempTilemap);
+        SetTilesBlock(area, TileType.Green, TempTilemap);
     }
     
     #endregion
