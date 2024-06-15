@@ -44,6 +44,20 @@ public class Building : MonoBehaviour
         return false;
     }
 
+    public bool StreetCanBePlaced()
+    {
+        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+
+        if (GridBuildingSystem.current.CanTakeArea(areaTemp))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void Place()
     {
         populationController populationcontroller = (populationController) populationController.GetComponent("populationController");
@@ -68,11 +82,23 @@ public class Building : MonoBehaviour
         adjustupkeep(1);
 
     }
+
+    public void StreetPlace()
+    {
+        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+        Placed = true;
+        GridBuildingSystem.current.StreetTakeArea(areaTemp);
+    }
+
+    
     private void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             GameObject.Destroy(gameObject);
+<<<<<<< HEAD
 
             if(isunique)
             {
@@ -80,6 +106,9 @@ public class Building : MonoBehaviour
                 Button.SetActive(true);
             }
 
+=======
+            GridBuildingSystem.current.ClearArea();
+>>>>>>> ed9955226b103920af1be75574338ffaba347e6b
             adjuststorage(-1);
             adjustproduction(-1);
             adjustupkeep(-1);

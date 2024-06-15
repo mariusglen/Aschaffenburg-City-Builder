@@ -20,6 +20,9 @@ public class GridBuildingSystem : MonoBehaviour
     private Vector3 prevPos;
     private BoundsInt prevArea;
 
+    public bool IsPlacing;
+    public bool IsPlacingStreet;
+
     
     #region Unity Methods
 
@@ -36,7 +39,6 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Green, Resources.Load<TileBase>(tilePath + "Green"));
         tileBases.Add(TileType.Red, Resources.Load<TileBase>(tilePath + "Red"));
         tileBases.Add(TileType.Orange, Resources.Load<TileBase>(tilePath + "orange"));
-        Debug.Log(tileBases);
     }
 
     private void Update()
@@ -60,27 +62,37 @@ public class GridBuildingSystem : MonoBehaviour
 
                 if (prevPos != cellPos)
                 {
-                    temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos
-                        + new Vector3(.5f, .5f, 0f));
+                    temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos);
+                        //+ new Vector3//(.5f, .5f, 0f));
                     prevPos = cellPos;
-                    FollowBuilding();
+                    //FollowBuilding();
                 }
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (temp.CanBePlaced())
+            if (temp.CanBePlaced()&& IsPlacing)
             {
                 temp.Place();
                 Schloss_BB.SetActive(true);
+                IsPlacing = false;
+            }
+            if (temp.StreetCanBePlaced()&& IsPlacingStreet)
+            {
+                temp.StreetPlace();
+                Schloss_BB.SetActive(true);
+                IsPlacingStreet = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && IsPlacing)
         {
             ClearArea();
             Destroy(temp.gameObject);
             Schloss_BB.SetActive(true);
+            IsPlacing = false;
+            IsPlacingStreet = false;
         }
+        
     }
     #region Tilemap management
     
@@ -141,10 +153,19 @@ public class GridBuildingSystem : MonoBehaviour
     {
         Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
         temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
-        FollowBuilding();
+        //FollowBuilding();
+        IsPlacing = true;
     }
 
-    private void ClearArea()
+    public void InitializeWithStreet(GameObject building)
+    {
+        Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
+        temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
+        //FollowBuilding();
+        IsPlacingStreet = true;
+    }
+
+    public void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);
@@ -174,7 +195,7 @@ public class GridBuildingSystem : MonoBehaviour
                 FillTiles(tileArray, TileType.Red);
                 break;
             }
-        }
+    }
         
         TempTilemap.SetTilesBlock(buildingArea, tileArray);
         prevArea = buildingArea;
@@ -198,7 +219,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     public bool StreetDetector(BoundsInt area)
     {
-        TileBase[] baseArray = GetMoreTilesBlock(area, MainTilemap);
+        TileBase[] baseArray = GetMoreTilesBlock(area, TempTilemap);
         foreach (var b in baseArray)
         {
             if (b == tileBases[TileType.Orange])
@@ -216,6 +237,18 @@ public class GridBuildingSystem : MonoBehaviour
     {
         //SetTilesBlock(area, TileType.Empty, TempTilemap);
         SetTilesBlock(area, TileType.Green, TempTilemap);
+    }
+
+    public void StreetTakeArea(BoundsInt area)
+    {
+        //SetTilesBlock(area, TileType.Empty, TempTilemap);
+        SetTilesBlock(area, TileType.Orange, TempTilemap);
+    }
+
+    public void RemoveArea(BoundsInt area)
+    {
+        //SetTilesBlock(area, TileType.Empty, TempTilemap);
+        SetTilesBlock(area, TileType.Empty, TempTilemap);
     }
     
     #endregion
