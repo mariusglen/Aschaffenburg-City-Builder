@@ -32,7 +32,21 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-        if (GridBuildingSystem.current.CanTakeArea(areaTemp) /*&& GridBuildingSystem.current.StreetDetector(areaTemp)*/)
+        if (GridBuildingSystem.current.CanTakeArea(areaTemp) && GridBuildingSystem.current.StreetDetector(areaTemp))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool StreetCanBePlaced()
+    {
+        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+
+        if (GridBuildingSystem.current.CanTakeArea(areaTemp))
         {
             return true;
         }
@@ -61,11 +75,23 @@ public class Building : MonoBehaviour
         adjustupkeep(1);
 
     }
+
+    public void StreetPlace()
+    {
+        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+        Placed = true;
+        GridBuildingSystem.current.StreetTakeArea(areaTemp);
+    }
+
+    
     private void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             GameObject.Destroy(gameObject);
+            GridBuildingSystem.current.ClearArea();
             adjuststorage(-1);
             adjustproduction(-1);
             adjustupkeep(-1);

@@ -20,6 +20,9 @@ public class GridBuildingSystem : MonoBehaviour
     private Vector3 prevPos;
     private BoundsInt prevArea;
 
+    public bool IsPlacing;
+    public bool IsPlacingStreet;
+
     
     #region Unity Methods
 
@@ -69,18 +72,28 @@ public class GridBuildingSystem : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (temp.CanBePlaced())
+            if (temp.CanBePlaced()&& IsPlacing)
             {
                 temp.Place();
                 Schloss_BB.SetActive(true);
+                IsPlacing = false;
+            }
+            if (temp.StreetCanBePlaced()&& IsPlacingStreet)
+            {
+                temp.StreetPlace();
+                Schloss_BB.SetActive(true);
+                IsPlacingStreet = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && IsPlacing)
         {
             ClearArea();
             Destroy(temp.gameObject);
             Schloss_BB.SetActive(true);
+            IsPlacing = false;
+            IsPlacingStreet = false;
         }
+        
     }
     #region Tilemap management
     
@@ -142,9 +155,18 @@ public class GridBuildingSystem : MonoBehaviour
         Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
         temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
         FollowBuilding();
+        IsPlacing = true;
     }
 
-    private void ClearArea()
+    public void InitializeWithStreet(GameObject building)
+    {
+        Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
+        temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
+        FollowBuilding();
+        IsPlacingStreet = true;
+    }
+
+    public void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);
@@ -216,6 +238,18 @@ public class GridBuildingSystem : MonoBehaviour
     {
         //SetTilesBlock(area, TileType.Empty, TempTilemap);
         SetTilesBlock(area, TileType.Green, TempTilemap);
+    }
+
+    public void StreetTakeArea(BoundsInt area)
+    {
+        //SetTilesBlock(area, TileType.Empty, TempTilemap);
+        SetTilesBlock(area, TileType.Orange, TempTilemap);
+    }
+
+    public void RemoveArea(BoundsInt area)
+    {
+        //SetTilesBlock(area, TileType.Empty, TempTilemap);
+        SetTilesBlock(area, TileType.Empty, TempTilemap);
     }
     
     #endregion
