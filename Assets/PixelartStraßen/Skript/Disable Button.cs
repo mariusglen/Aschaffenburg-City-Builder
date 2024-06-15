@@ -2,24 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisableButton : MonoBehaviour
+public class EnableButton : MonoBehaviour
 {
     GameObject Button;
 
-    // Start is called before the first frame update
-    void Start()
+    public void enablebutton()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void DiableButton()
-    {
-        Button.SetActive(false);
+        Button.SetActive(true);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class Building : MonoBehaviour
     public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
     public int production_wood, production_stone, production_iron, production_money, production_culture;
     public int cap_wood, cap_stone, cap_iron, cap_money, cap_culture;
-
+    public String unique_name;
+    public Boolean isunique;
     private GameObject populationController;
     private GameObject resourceController;
+    private GameObject Button;
 
 
     #region Build Methods
@@ -23,6 +26,7 @@ public class Building : MonoBehaviour
     {
         populationController =  GameObject.Find("populationController");
         resourceController =    GameObject.Find("resourceController");
+        Button = GameObject.Find(unique_name);
     }
 
 
@@ -51,7 +55,10 @@ public class Building : MonoBehaviour
         GridBuildingSystem.current.TakeArea(areaTemp);
         populationcontroller.ChangeMaxPopulation(PopulationCapIncrease);
         populationcontroller.ChangeWorkingPopulation(price_worker);
-
+        if (isunique)
+        {
+            Button.SetActive(false);
+        }
         //New modifier to allow negative adjustments: please only use 1/-1
         //adjusts storage for the cost of the building
         adjuststorage(1);
@@ -66,6 +73,13 @@ public class Building : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Delete))
         {
             GameObject.Destroy(gameObject);
+
+            if(isunique)
+            {
+                Debug.Log(Button);
+                Button.SetActive(true);
+            }
+
             adjuststorage(-1);
             adjustproduction(-1);
             adjustupkeep(-1);
@@ -109,5 +123,6 @@ public class Building : MonoBehaviour
         resourcecontroller.change_wood_cap(cap_wood * modifier);
         resourcecontroller.change_culture_cap(cap_culture * modifier);
     }
+
     #endregion
 }

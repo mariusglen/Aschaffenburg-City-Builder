@@ -13,6 +13,7 @@ public class resourceController : MonoBehaviour
     public TextMeshProUGUI wood, stone, iron, money, culture;
 
     //Saving System
+    /*
     public void SaveGame()
     {
         SaveSystem.SaveGame(this);
@@ -38,7 +39,7 @@ public class resourceController : MonoBehaviour
         production_money = data.production_money;
         production_culture = data.production_culture;
     }
-
+    */
     // Start is called before the first frame update
     void Start()
     {
