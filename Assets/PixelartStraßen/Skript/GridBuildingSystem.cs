@@ -70,7 +70,7 @@ public class GridBuildingSystem : MonoBehaviour
             if (temp.StreetCanBePlaced() && IsPlacingStreet)
             {
                 temp.StreetPlace();
-                Schloss_BB.SetActive(true);
+                //Schloss_BB.SetActive(true);
                 IsPlacingStreet = false;
             }
         }
@@ -138,7 +138,6 @@ public class GridBuildingSystem : MonoBehaviour
     {
         Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
         temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
-        FollowBuilding();
         //FollowBuilding();
         IsPlacing = true;
     }
@@ -147,7 +146,6 @@ public class GridBuildingSystem : MonoBehaviour
     {
         Vector3 position = gridLayout.CellToLocalInterpolated(new Vector3(.5f, .5f, 0f));
         temp = Instantiate(building, position, Quaternion.identity).GetComponent<Building>();
-        FollowBuilding();
         //FollowBuilding();
         IsPlacingStreet = true;
     }

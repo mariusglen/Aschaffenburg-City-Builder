@@ -53,7 +53,7 @@ MonoBehaviour:
   price_wood: 0
   price_stone: 0
   price_iron: 0
-  price_money: 50
+  price_money: -50
   price_worker: 0
   upkeep_wood: 0
   upkeep_stone: 0
@@ -69,6 +69,8 @@ MonoBehaviour:
   cap_iron: 0
   cap_money: 0
   cap_culture: 0
+  unique_name: 
+  isunique: 0
 --- !u!61 &7269245335839488018
 BoxCollider2D:
   m_ObjectHideFlags: 0

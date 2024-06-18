@@ -8,10 +8,10 @@ public class Building : MonoBehaviour
     public bool Placed { get; private set; }
     public BoundsInt area;
     public int PopulationCapIncrease;
-    public int price_wood, price_stone, price_iron, price_money, price_worker;
-    public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
-    public int production_wood, production_stone, production_iron, production_money, production_culture;
-    public int cap_wood, cap_stone, cap_iron, cap_money, cap_culture;
+    public double price_wood, price_stone, price_iron, price_money, price_worker;
+    public double upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money;
+    public double production_wood, production_stone, production_iron, production_money, production_culture;
+    public double cap_wood, cap_stone, cap_iron, cap_money, cap_culture;
     private GameObject populationController;
     private GameObject resourceController;    
     public String unique_name;
@@ -57,7 +57,7 @@ public class Building : MonoBehaviour
         Placed = true;
         GridBuildingSystem.current.TakeArea(areaTemp);
         populationcontroller.ChangeMaxPopulation(PopulationCapIncrease);
-        populationcontroller.ChangeWorkingPopulation(price_worker);
+        populationcontroller.ChangeWorkingPopulation((int)price_worker);
         if (isunique)
         {
             Button.SetActive(false);

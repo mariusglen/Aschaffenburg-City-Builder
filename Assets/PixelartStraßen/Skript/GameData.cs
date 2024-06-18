@@ -11,9 +11,9 @@ public class GameData
     public int MinPopulation;
     public int PopulationGrowth;
     public int WorkingPopulation;
-    public int storage_wood, storage_stone, storage_iron, storage_money, storage_culture; //Tracks global storage
-    public int upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money, upkeep_culture;  //Tracks global Upkeep
-    public int production_wood, production_stone, production_iron, production_money, production_culture; //Tracks global Production
+    public double storage_wood, storage_stone, storage_iron, storage_money, storage_culture; //Tracks global storage
+    public double upkeep_wood, upkeep_stone, upkeep_iron, upkeep_money, upkeep_culture;  //Tracks global Upkeep
+    public double production_wood, production_stone, production_iron, production_money, production_culture; //Tracks global Production
 
 
     public GameData(resourceController resource)
