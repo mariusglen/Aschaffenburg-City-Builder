@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5888771238187388438}
   - component: {fileID: 2341154757511428702}
+  - component: {fileID: 37360357556452407}
   m_Layer: 0
   m_Name: Artboard 1
   m_TagString: Untagged
@@ -84,6 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &37360357556452407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450961715576093218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131adeeb03cd4844b937db4222266dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2341154757511428702}
 --- !u!1 &2965948945158014090
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +167,8 @@ MonoBehaviour:
   cap_iron: 0
   cap_money: 0
   cap_culture: 0
+  unique_name: 
+  isunique: 0
 --- !u!61 &1930200304944476075
 BoxCollider2D:
   m_ObjectHideFlags: 0

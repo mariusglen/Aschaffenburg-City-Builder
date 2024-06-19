@@ -23,6 +23,8 @@ public class cameraContoller : MonoBehaviour
     [SerializeField]
     private float maxZoomFOV = 10;
 
+
+
     private void Awake()
     {
         cameraFreeWalk = GetComponent<Camera>();
@@ -48,6 +50,8 @@ public class cameraContoller : MonoBehaviour
     }
     void Update()
     {
+        float posx = cameraFreeWalk.transform.position.x;
+        float posy = cameraFreeWalk.transform.position.y;
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         mouseX = Input.GetAxis("Mouse X");
