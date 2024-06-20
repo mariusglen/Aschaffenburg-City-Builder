@@ -74,9 +74,9 @@ public class GridBuildingSystem : MonoBehaviour
                 Schloss_BB.SetActive(true);
                 IsPlacing = false;
                 Vector3 Particle_Pos = temp.transform.localPosition;
-                Hammerrain.transform.position = Particle_Pos;
-                Nailhail.transform.position = Particle_Pos;
-                Bohrerregen.transform.position = Particle_Pos;
+                //Hammerrain.transform.position = Particle_Pos;
+                //Nailhail.transform.position = Particle_Pos;
+                //Bohrerregen.transform.position = Particle_Pos;
                 Cloud_1.transform.position = Particle_Pos;
                 Cloud_2.transform.position = Particle_Pos;
                 Cloud_3.transform.position = Particle_Pos;
@@ -86,7 +86,6 @@ public class GridBuildingSystem : MonoBehaviour
                 Cloud_1.SetActive(true);
                 Cloud_2.SetActive(true);
                 Cloud_3.SetActive(true);
-
             }
             if (temp.StreetCanBePlaced() && IsPlacingStreet)
             {

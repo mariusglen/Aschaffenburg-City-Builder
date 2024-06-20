@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class populationController : MonoBehaviour
 {   
@@ -11,6 +12,7 @@ public class populationController : MonoBehaviour
     public int WorkingPopulation;
     public resourceController resourceController;
     public Happyness Population_Satisfaction;
+    public TextMeshProUGUI worker;
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class populationController : MonoBehaviour
         {
             // do population calc here
             PopCalc();
+            worker.SetText(WorkingPopulation.ToString());
             yield return new WaitForSeconds(10);
         }
     }
