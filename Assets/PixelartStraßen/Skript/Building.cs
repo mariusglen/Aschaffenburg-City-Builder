@@ -31,7 +31,7 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-            if (GridBuildingSystem.current.CanTakeArea(areaTemp) /*&& GridBuildingSystem.current.StreetDetector(areaTemp)*/)
+            if (GridBuildingSystem.current.CanTakeArea(areaTemp) /*&& GridBuildingSystem.current.StreetDetector(areaTemp)*/ && canbebought())
             {
                 return true;
             }
@@ -134,7 +134,15 @@ public class Building : MonoBehaviour
     {
         resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
 
-        
+        if(resourcecontroller.get_wood() >= (price_wood * -1) && resourcecontroller.get_stone() >= (price_stone * -1) && resourcecontroller.get_iron() >= (price_iron * -1) && resourcecontroller.get_money() >= (price_money * -1))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
     #endregion
 }
