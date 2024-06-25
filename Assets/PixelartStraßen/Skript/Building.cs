@@ -69,6 +69,7 @@ public class Building : MonoBehaviour
         adjustproduction(1);
         //adjusts the global upkeep of goods
         adjustupkeep(1);
+        adjustcapacity(1);
     }        
     public void StreetPlace()
     {
@@ -93,6 +94,7 @@ public class Building : MonoBehaviour
             adjuststorage(-1);
             adjustproduction(-1);
             adjustupkeep(-1);
+            adjustcapacity(-1);
         }
     }
     void adjuststorage(int modifier)

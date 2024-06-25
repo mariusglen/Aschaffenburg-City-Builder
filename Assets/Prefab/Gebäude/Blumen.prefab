@@ -182,7 +182,7 @@ MonoBehaviour:
   price_wood: 0
   price_stone: 0
   price_iron: 0
-  price_money: 1
+  price_money: -1
   price_worker: 0
   upkeep_wood: 0
   upkeep_stone: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   production_stone: 0
   production_iron: 0
   production_money: 1
-  production_culture: 1
+  production_culture: 3
   cap_wood: 0
   cap_stone: 0
   cap_iron: 0

@@ -95,16 +95,16 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
   PopulationCapIncrease: 0
-  price_wood: 1
+  price_wood: -1
   price_stone: 0
   price_iron: 0
-  price_money: 1
+  price_money: -1
   price_worker: 0
   upkeep_wood: 0
   upkeep_stone: 0
   upkeep_iron: 0
   upkeep_money: 0
-  production_wood: 1
+  production_wood: 4
   production_stone: 0
   production_iron: 0
   production_money: 1

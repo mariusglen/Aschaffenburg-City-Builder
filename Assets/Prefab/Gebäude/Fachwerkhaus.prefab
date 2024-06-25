@@ -50,22 +50,22 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 4, z: 1}
   PopulationCapIncrease: 30
-  price_wood: 0
+  price_wood: -8
   price_stone: 0
   price_iron: 0
-  price_money: 0
+  price_money: -3
   price_worker: 0
-  upkeep_wood: 0
+  upkeep_wood: 1
   upkeep_stone: 0
   upkeep_iron: 0
-  upkeep_money: 0
+  upkeep_money: 1
   production_wood: 0
-  production_stone: 0
+  production_stone: 4
   production_iron: 0
   production_money: 0
   production_culture: 0
   cap_wood: 0
-  cap_stone: 0
+  cap_stone: 16
   cap_iron: 0
   cap_money: 0
   cap_culture: 0
