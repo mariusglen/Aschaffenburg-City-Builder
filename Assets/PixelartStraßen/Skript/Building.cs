@@ -129,5 +129,12 @@ public class Building : MonoBehaviour
         resourcecontroller.change_wood_cap(cap_wood * modifier);
         resourcecontroller.change_culture_cap(cap_culture * modifier);
     }
+
+    Boolean canbebought()
+    {
+        resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
+
+        
+    }
     #endregion
 }
