@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3813218847682175174}
   - component: {fileID: 4479231024740694371}
   - component: {fileID: 9089606350155458115}
+  - component: {fileID: 1644578849639125386}
   m_Layer: 0
   m_Name: pixilart-drawing_20
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c3ecbac60be0bc6459abc144e6246625, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b96bd1ca208903840b49f13fa42fc89e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,6 +131,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.88110054, y: 0.51137674}
   m_EdgeRadius: 0
+--- !u!114 &1644578849639125386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4875706169573938882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131adeeb03cd4844b937db4222266dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4479231024740694371}
 --- !u!1 &5023659709086249792
 GameObject:
   m_ObjectHideFlags: 0
