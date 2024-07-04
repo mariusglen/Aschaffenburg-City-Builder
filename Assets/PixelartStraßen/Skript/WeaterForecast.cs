@@ -42,6 +42,7 @@ public class WeaterForecast : MonoBehaviour
                 Raincloud_2.SetActive(true);
                 Rain_1.SetActive(true);
                 Rain_2.SetActive(true);
+                AudioManager2.Instance.PlaySFX("Rain");
             }
 
             counter++;

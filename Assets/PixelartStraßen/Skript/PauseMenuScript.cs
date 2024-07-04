@@ -12,6 +12,7 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0;
         AudioManager2.Instance.PlaySFX("Pop");
+        AudioManager2.Instance.PlaySFX("Game_Paused");
 
     }
 
@@ -27,5 +28,6 @@ public class PauseMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         AudioManager2.Instance.PlaySFX("Pop");
+        AudioManager2.Instance.PlaySFX("Game_Running");
     }
 }

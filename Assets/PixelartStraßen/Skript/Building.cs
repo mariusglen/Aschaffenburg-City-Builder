@@ -90,6 +90,7 @@ public class Building : MonoBehaviour
                 Debug.Log(Button);
                 Button.SetActive(true);
             }
+            AudioManager2.Instance.PlaySFX("Buildingwreck");
             GridBuildingSystem.current.ClearArea();
             adjuststorage(-1);
             adjustproduction(-1);
@@ -142,7 +143,19 @@ public class Building : MonoBehaviour
         }
         else
         {
-            return false;
+            if (resourcecontroller.get_wood() < (price_wood * -1)){
+                AudioManager2.Instance.PlaySFX("Wood_needed");
+            }
+            else if(resourcecontroller.get_stone() < (price_stone * -1)){
+                AudioManager2.Instance.PlaySFX("Stone_needed");
+            }
+            else if (resourcecontroller.get_iron() < (price_iron * -1)){
+                AudioManager2.Instance.PlaySFX("Iron_needed");
+            }
+            else if (resourcecontroller.get_money() < (price_money * -1)){
+                AudioManager2.Instance.PlaySFX("Gold_needed");
+            }
+                return false;
         }
 
     }

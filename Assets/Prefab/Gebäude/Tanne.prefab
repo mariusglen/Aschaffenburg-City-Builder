@@ -108,7 +108,7 @@ MonoBehaviour:
   production_stone: 0
   production_iron: 0
   production_money: 1
-  production_culture: 1
+  production_culture: 100
   cap_wood: 0
   cap_stone: 0
   cap_iron: 0
