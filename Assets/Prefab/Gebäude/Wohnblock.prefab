@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3925750586971800829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.95787}
+  m_LocalScale: {x: 1.0766, y: 1.1931957, z: 1.0766}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8912481950008539196}
@@ -50,23 +50,23 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 2, y: 2, z: 4}
   PopulationCapIncrease: 15
-  price_wood: 0
+  price_wood: -5
   price_stone: 0
   price_iron: 0
-  price_money: -50
+  price_money: -30
   price_worker: 0
   upkeep_wood: 0
   upkeep_stone: 0
   upkeep_iron: 0
-  upkeep_money: 0
+  upkeep_money: 1
   production_wood: 0
   production_stone: 0
-  production_iron: 0
-  production_money: 1
+  production_iron: 3
+  production_money: 0
   production_culture: 0
   cap_wood: 0
   cap_stone: 0
-  cap_iron: 0
+  cap_iron: 12
   cap_money: 0
   cap_culture: 0
   unique_name: 

@@ -10,6 +10,12 @@ public class GridBuildingSystem : MonoBehaviour
     public Tilemap MainTilemap;
     public Tilemap TempTilemap;
     public GameObject Schloss_BB;
+    public GameObject Hammerrain;
+    public GameObject Bohrerregen;
+    public GameObject Nailhail;
+    public GameObject Cloud_1;
+    public GameObject Cloud_2;
+    public GameObject Cloud_3;
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
     private Building temp;
     private Vector3 prevPos;
@@ -48,6 +54,7 @@ public class GridBuildingSystem : MonoBehaviour
             if (!temp.Placed)
             {
                 Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                
                 Vector3Int cellPos = gridLayout.LocalToCell(touchPos);
 
                 if (prevPos != cellPos)
@@ -66,6 +73,19 @@ public class GridBuildingSystem : MonoBehaviour
                 temp.Place();
                 Schloss_BB.SetActive(true);
                 IsPlacing = false;
+                Vector3 Particle_Pos = temp.transform.localPosition;
+                //Hammerrain.transform.position = Particle_Pos;
+                //Nailhail.transform.position = Particle_Pos;
+                //Bohrerregen.transform.position = Particle_Pos;
+                Cloud_1.transform.position = Particle_Pos;
+                Cloud_2.transform.position = Particle_Pos;
+                Cloud_3.transform.position = Particle_Pos;
+                Hammerrain.SetActive(true) ;
+                Nailhail.SetActive(true);
+                Bohrerregen.SetActive(true);
+                Cloud_1.SetActive(true);
+                Cloud_2.SetActive(true);
+                Cloud_3.SetActive(true);
             }
             if (temp.StreetCanBePlaced() && IsPlacingStreet)
             {

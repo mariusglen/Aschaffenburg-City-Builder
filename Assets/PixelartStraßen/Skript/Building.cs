@@ -31,7 +31,7 @@ public class Building : MonoBehaviour
         BoundsInt areaTemp = area;
         areaTemp.position = positionInt;
 
-            if (GridBuildingSystem.current.CanTakeArea(areaTemp) /*&& GridBuildingSystem.current.StreetDetector(areaTemp)*/)
+            if (GridBuildingSystem.current.CanTakeArea(areaTemp) /*&& GridBuildingSystem.current.StreetDetector(areaTemp)*/ && canbebought())
             {
                 return true;
             }
@@ -69,6 +69,7 @@ public class Building : MonoBehaviour
         adjustproduction(1);
         //adjusts the global upkeep of goods
         adjustupkeep(1);
+        adjustcapacity(1);
     }        
     public void StreetPlace()
     {
@@ -89,10 +90,12 @@ public class Building : MonoBehaviour
                 Debug.Log(Button);
                 Button.SetActive(true);
             }
+            AudioManager2.Instance.PlaySFX("Buildingwreck");
             GridBuildingSystem.current.ClearArea();
             adjuststorage(-1);
             adjustproduction(-1);
             adjustupkeep(-1);
+            adjustcapacity(-1);
         }
     }
     void adjuststorage(int modifier)
@@ -128,6 +131,33 @@ public class Building : MonoBehaviour
         resourcecontroller.change_stone_cap(cap_stone * modifier);
         resourcecontroller.change_wood_cap(cap_wood * modifier);
         resourcecontroller.change_culture_cap(cap_culture * modifier);
+    }
+
+    Boolean canbebought()
+    {
+        resourceController resourcecontroller = (resourceController)resourceController.GetComponent("resourceController");
+
+        if(resourcecontroller.get_wood() >= (price_wood * -1) && resourcecontroller.get_stone() >= (price_stone * -1) && resourcecontroller.get_iron() >= (price_iron * -1) && resourcecontroller.get_money() >= (price_money * -1))
+        {
+            return true;
+        }
+        else
+        {
+            if (resourcecontroller.get_wood() < (price_wood * -1)){
+                AudioManager2.Instance.PlaySFX("Wood_needed");
+            }
+            else if(resourcecontroller.get_stone() < (price_stone * -1)){
+                AudioManager2.Instance.PlaySFX("Stone_needed");
+            }
+            else if (resourcecontroller.get_iron() < (price_iron * -1)){
+                AudioManager2.Instance.PlaySFX("Iron_needed");
+            }
+            else if (resourcecontroller.get_money() < (price_money * -1)){
+                AudioManager2.Instance.PlaySFX("Gold_needed");
+            }
+                return false;
+        }
+
     }
     #endregion
 }

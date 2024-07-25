@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.5740532, y: 0.6688025, z: 0.6688025}
+  m_LocalScale: {x: 0.6518374, y: 0.7594252, z: 0.7594252}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7230288824797185069}
@@ -148,8 +148,8 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 4, y: 3, z: 1}
   PopulationCapIncrease: 0
-  price_wood: 0
-  price_stone: 0
+  price_wood: -10
+  price_stone: -20
   price_iron: 0
   price_money: 0
   price_worker: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   production_stone: 0
   production_iron: 0
   production_money: 0
-  production_culture: 0
+  production_culture: 30
   cap_wood: 0
   cap_stone: 0
   cap_iron: 0
